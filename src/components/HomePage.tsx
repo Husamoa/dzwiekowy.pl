@@ -4,7 +4,10 @@ import styles from "@/styles/HomePage.module.scss";
 const HomePage = () => {
     return (
         <Grid.Container gap={2} justify="center">
-            <Grid xs={6}>
+            <Grid md={6} xs={12}>
+                <Image className={styles.image} src={"./images/zdjecie_glowna.jpg"}/>
+            </Grid>
+            <Grid md={6} xs={12}>
                 <div>
                     <h1>Tenis Stołowy Dźwiękowy</h1>
                     <h2>Z myślą o osobach niewidomych...</h2>
@@ -14,9 +17,6 @@ const HomePage = () => {
                     <Spacer y={1} />
                     <Link href={"/start-play"}><Button color="success" flat>Zacznij grać</Button></Link>
                 </div>
-            </Grid>
-            <Grid xs={6}>
-                <Image className={styles.image} src={"./images/zdjecie_glowna.jpg"}/>
             </Grid>
         </Grid.Container>
     )
