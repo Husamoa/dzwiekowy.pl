@@ -1,5 +1,4 @@
-import {Navbar, Text, Link, Image, Dropdown, Avatar} from "@nextui-org/react";
-import {useTheme} from "@nextui-org/react";
+import {Navbar, Text, Link, Image, useTheme} from "@nextui-org/react";
 import {useTheme as useNextTheme} from 'next-themes';
 import {DarkModeSwitch} from "react-toggle-dark-mode";
 import {useRouter} from "next/router";
@@ -9,27 +8,22 @@ export default function Nav() {
     const currentRoute = router.pathname;
     const menuItems = [
         {
-            id: 0,
             label: "Aktualności",
             href: "/blog"
         },
         {
-            id: 1,
             label: "Zacznij grać",
             href: "/start-play"
         },
         {
-            id: 2,
             label: "Zasady gry",
             href: "/rules"
         },
         {
-            id: 3,
             label: "Fundacja",
             href: "/foundation"
         },
         {
-            id: 4,
             label: "Kontakt",
             href: "/contact"
         },
@@ -41,7 +35,7 @@ export default function Nav() {
         <Navbar isCompact isBordered variant="floating">
             <Navbar.Toggle showIn={"xs"}/>
             <Navbar.Brand>
-                <Text b color="inherit" hideIn="xs">
+                <Text b color="inherit">
                     <Link color="inherit" href="/"><Image height={50} src={"./same_dlonie.png"} alt={"logo"}
                                                           objectFit={"cover"}/>TSD</Link>
                 </Text>
@@ -59,20 +53,12 @@ export default function Nav() {
                     "@xs": {
                         w: "12%",
                         jc: "flex-end",
+                        display: "none"
                     },
                 }}
             >
-
             </Navbar.Content>
             <Navbar.Collapse>
-                <Navbar.CollapseItem>
-                    <Navbar.Brand>
-                        <Text b color="inherit">
-                            <Link color="inherit" href="/">TSD</Link>
-                        </Text>
-                    </Navbar.Brand>
-                </Navbar.CollapseItem>
-
                 {menuItems.map((item, index) => (
                     <Navbar.CollapseItem
                         disableAnimation
