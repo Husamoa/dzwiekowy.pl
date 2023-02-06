@@ -2,8 +2,9 @@ import {Navbar, Text, Link, Image, useTheme} from "@nextui-org/react";
 import {useTheme as useNextTheme} from 'next-themes';
 import {DarkModeSwitch} from "react-toggle-dark-mode";
 import {useRouter} from "next/router";
+import dynamic from "next/dynamic";
 
-export default function Nav() {
+const Nav = () => {
     const router = useRouter();
     const currentRoute = router.pathname;
     const menuItems = [
@@ -89,3 +90,5 @@ export default function Nav() {
         </Navbar>
     )
 }
+
+export default dynamic(()=>Promise.resolve(Nav), {ssr: false})
