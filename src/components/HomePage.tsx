@@ -1,19 +1,17 @@
 import {Button, Grid, Image, Spacer, Link} from "@nextui-org/react";
 import styles from "@/styles/HomePage.module.scss";
+import {IHomePageData} from "@/pages";
 
-const HomePage = () => {
+const HomePage = ({homePageData}: IHomePageData) => {
     return (
         <Grid.Container gap={2} justify="center">
             <Grid md={6} xs={12}>
-                <Image className={styles.image} src={"./images/zdjecie_glowna.jpg"}/>
+                <Image className={styles.image} src={homePageData?.featuredImage?.node.sourceUrl}/>
             </Grid>
             <Grid md={6} xs={12}>
                 <div>
-                    <h1>Tenis Stołowy Dźwiękowy</h1>
-                    <h2>Z myślą o osobach niewidomych...</h2>
-                    <p>Gra stworzona z myślą o osobach niewidomych. Jej twórcą jest wieloletni pedagog, nauczyciel
-                        wychowania fizycznego i rehabilitant Specjalnego Ośrodka Szkolno-Wychowawczego dla Dzieci
-                        Niewidomych w Owińskach, Leszek Szmaj.</p>
+                    <h1>{homePageData?.title}</h1>
+                    <div dangerouslySetInnerHTML={{__html: homePageData?.content}} />
                     <Spacer y={1} />
                     <Link href={"/start-play"}><Button color="success" flat>Zacznij grać</Button></Link>
                 </div>

@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import HomePage from "@/components/HomePage";
+import {getHomePageData} from "@/wp-cms/api";
+import {IDataFromWP} from "@/types";
 
-interface IHomePageData {
-    homePageData: {
-        topbar: { email: string, phoneNumber: string }
-    }
+export interface IHomePageData {
+    homePageData: IDataFromWP
 }
 
-export default function Home() {
+export default function Home({homePageData}: IHomePageData) {
     return (
         <>
             <Head>
@@ -16,8 +16,17 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/logo.png"/>
             </Head>
-            <HomePage/>
+            <HomePage homePageData={homePageData}/>
         </>
     )
 }
+
+export const getStaticProps = async () => {
+    const homePageData = await getHomePageData();
+    return {
+        props: {
+            homePageData
+        }
+    };
+};
 

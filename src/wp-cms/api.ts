@@ -1,11 +1,11 @@
 const API_URL = process.env.WP_API_URL as string;
 
-async function fetchAPI (query: string, { variables }: {variables?: string} = {}) {
-    const headers = { 'Content-Type': 'application/json' };
+async function fetchAPI(query: string, {variables}: { variables?: string } = {}) {
+    const headers = {'Content-Type': 'application/json'};
     const res = await fetch(API_URL, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({ query, variables })
+        body: JSON.stringify({query, variables})
     });
     const json = await res.json();
     if (json.errors) {
@@ -21,10 +21,19 @@ export async function getHomePageData() {
         `
       {
         page(id: "6", idType: DATABASE_ID) {
-          topbar {
-            email
-            phoneNumber
-          }
+            id
+            slug
+            title
+            content(format: RENDERED)
+            menuOrder
+            featuredImage {
+              cursor
+              node {
+                id
+                uri
+                sourceUrl
+              }
+            }
         }
       }
     `
